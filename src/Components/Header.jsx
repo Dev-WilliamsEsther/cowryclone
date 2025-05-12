@@ -2,34 +2,22 @@ import React, { useState } from 'react'
 import { CgChevronDown } from 'react-icons/cg'
 
 const Header = () => {
-  const [dropPersonalMenu, setDropPersonalMenu] = useState(false);
-  const [dropBusinessMenu, setDropBusinessMenu] = useState(false);
-  const [dropDeveloperMenu, setdropDeveloperMenu] = useState(false);
-  const [dropLearnMenu, setdropLearnMenu] = useState(false);
+  const [activedropdown, setActivedropdown] = useState(null);
 
 
 
+  const dropdown = (type) => {
+    setActivedropdown(prev => (prev === type ? null : type));
+  }
 
-  const dropPersonal = () => {
-    setDropPersonalMenu(prev => !prev);
-  }
-  const dropBusiness = () => {
-    setDropBusinessMenu(prev => !prev);
-  }
-  const dropDeveloper = () => {
-    setdropDeveloperMenu(prev => !prev);
-  }
-  const dropLearn = () => {
-    setdropLearnMenu(prev => !prev);
-  }
 
 
   return (
     <div className='w-full h-20 bg-white flex justify-around items-center'>
         <img src="data:image/svg+xml,%3Csvg%20width%3D%22152%22%20height%3D%2229%22%20viewBox%3D%220%200%20152%2029%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20svg-inline%3D%22%22%20role%3D%22presentation%22%20focusable%3D%22false%22%20tabindex%3D%22-1%22%3E%3Cg%20clip-path%3D%22url(%23clip0_10311_7421)%22%20fill%3D%22%230067F5%22%3E%3Cpath%20d%3D%22M14%20.5H6.154l-.015.027L5.056%202.5H14c6.625%200%2012%205.372%2012%2012s-5.373%2012-12%2012-12-5.373-12-12c0-1.254.196-2.5.582-3.692h2.29A9.846%209.846%200%201014%204.655H3.873l-1.097%202H14a7.845%207.845%200%2011-6.923%204.152h2.595a5.689%205.689%200%20104.328-2H1.593l-1.097%202A14.025%2014.025%200%20000%2014.5c0%207.732%206.268%2014%2014%2014s14-6.268%2014-14-6.268-14-14-14zm0%2010.308a3.693%203.693%200%20110%207.385%203.693%203.693%200%20010-7.385zM34.154%2014.796c0-3.89%202.61-6.622%206.523-6.622%202.412%200%204.381%201.058%205.415%202.83l-2.264%201.6c-.714-1.132-1.797-1.673-3.077-1.673-2.116%200-3.52%201.503-3.52%203.865%200%202.338%201.403%203.864%203.52%203.864%201.28%200%202.363-.566%203.077-1.699l2.264%201.6c-1.034%201.798-3.003%202.832-5.415%202.832-3.914%200-6.523-2.733-6.523-6.597zM46.518%2014.796c0-3.644%202.585-6.622%206.597-6.622%204.037%200%206.597%202.978%206.597%206.622%200%203.619-2.561%206.597-6.597%206.597-4.01%200-6.597-2.979-6.597-6.597zm10.117%200c0-2.29-1.354-3.89-3.52-3.89s-3.52%201.6-3.52%203.89c0%202.264%201.354%203.864%203.52%203.864s3.52-1.6%203.52-3.864zM79.424%208.517l-3.842%2012.53H72.34l-2.715-8.837-2.74%208.837h-3.248l-3.82-12.53h2.98l2.596%209.034%202.787-9.034h2.883l2.788%209.034%202.57-9.034h3.004zM121.622%208.517l-3.845%2012.53h-3.243l-2.715-8.837-2.74%208.837h-3.241l-3.82-12.527h2.979l2.595%209.034%202.785-9.037h2.883l2.788%209.034%202.571-9.034h3.003zM88.412%208.47v2.805a9.215%209.215%200%2000-1.379-.123c-2.19%200-3.347%201.108-3.347%203.717v6.18h-3.002V8.517h2.95v2.094c.617-1.452%201.97-2.314%203.693-2.314.37-.007.736.051%201.085.172zM100.871%208.517v11.274c0%204.21-2.338%206.523-6.474%206.523-2.141%200-4.11-.64-5.293-1.747l1.355-2.191c1.057.835%202.436%201.255%203.766%201.255%202.314%200%203.692-1.304%203.692-3.841v-1.08c-.713%201.378-2.24%202.214-4.086%202.214-2.659%200-4.332-1.673-4.332-4.726v-7.68h3.003v6.917c0%201.92.788%202.757%202.363%202.757%201.821%200%203.028-1.107%203.028-2.93V8.518h2.978zM122.412%204.555c0-1.083.763-1.87%201.92-1.87%201.132%200%201.893.787%201.893%201.87%200%201.084-.763%201.871-1.893%201.871-1.157%200-1.92-.788-1.92-1.87zm.419%203.963h3.003v12.53h-3.003V8.518zM127.345%2019.005l1.625-1.896c.984%201.083%202.511%201.723%204.111%201.723%201.427%200%202.215-.541%202.215-1.329%200-.665-.493-1.083-1.748-1.378l-2.043-.468c-2.609-.615-3.717-1.822-3.717-3.545%200-2.314%201.92-3.938%205.17-3.938%202.215%200%204.061.762%205.144%201.994l-1.6%201.944c-1.083-.935-2.314-1.378-3.619-1.378-1.403%200-2.092.517-2.092%201.28%200%20.59.418.96%201.748%201.255l2.166.517c2.633.591%203.594%201.797%203.594%203.52%200%202.486-1.921%204.087-5.243%204.087-2.486%200-4.578-.936-5.711-2.388zM151.636%2015.681h-9.331c.32%202.02%201.649%203.102%203.692%203.102%201.403%200%202.585-.517%203.496-1.576l1.797%201.773c-1.182%201.526-3.077%202.413-5.391%202.413-3.988%200-6.647-2.61-6.647-6.548%200-3.89%202.561-6.671%206.352-6.671%203.643%200%206.104%202.535%206.104%206.35%200%20.387-.025.774-.072%201.158zm-9.331-2.042h6.403c-.148-1.846-1.281-2.855-3.077-2.855-1.848%200-3.005%201.058-3.326%202.855z%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3Cdefs%3E%3CclipPath%20id%3D%22clip0_10311_7421%22%3E%3Cpath%20fill%3D%22%23fff%22%20transform%3D%22translate(0%20.5)%22%20d%3D%22M0%200h151.709v28H0z%22%3E%3C%2Fpath%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3C%2Fsvg%3E" alt="" />
         <div className='w-110 h-15 mr-[25%] flex justify-around items-center'>
-            <p className='relative flex items-center gap-1 hover:text-black cursor-pointer' onClick={dropPersonal}>Personal <CgChevronDown />
-            {dropPersonalMenu && (
+            <p className='relative flex items-center gap-1 hover:text-black cursor-pointer' onClick={()=>dropdown("Personal")}>Personal <CgChevronDown />
+            {activedropdown === "Personal" && (
               <div className=' absolute w-[700px] h-75 top-10 bg-white rounded-[6px] shadow-lg flex justify-around items-center'>
                 <div className='w-84 h-60 flex flex-col justify-around'>
                   <div className='flex items-center gap-3 p-2 rounded-md cursor-pointer'>
@@ -63,8 +51,8 @@ const Header = () => {
             )}
             </p>
 
-            <p className='relative flex items-center gap-1 hover:text-black cursor-pointer'  onClick={dropBusiness}>Business <CgChevronDown />
-            {dropBusinessMenu && (
+            <p className='relative flex items-center gap-1 hover:text-black cursor-pointer'  onClick={()=>dropdown("Business")}>Business <CgChevronDown />
+            {activedropdown === "Business" && (
               <div className='absolute w-[420px] h-36 bg-white top-10 rounded-[8px] flex justify-center items-center gap-7'>
               <img src="data:image/svg+xml,%3Csvg%20width%3D%22120%22%20height%3D%22120%22%20viewBox%3D%220%200%20120%20120%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20svg-inline%3D%22%22%20role%3D%22presentation%22%20focusable%3D%22false%22%20tabindex%3D%22-1%22%3E%3Cpath%20d%3D%22M60%20120c33.137%200%2060-26.863%2060-60S93.137%200%2060%200%200%2026.863%200%2060s26.863%2060%2060%2060z%22%20fill%3D%22%23CBF0FA%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M58.88%2063.01l35.78-20.79-.09%2033.34-35.79%2020.8.1-33.35z%22%20fill%3D%22%230067F5%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M79.64%2065.42c2.71-1.57%204.93-.31%204.94%202.81v13.15l-9.84%205.69V73.92a10.82%2010.82%200%20014.9-8.5zM42.13%2048.19l8.97-5.21L67.86%2057.8l-8.97%205.21-16.76-14.82zM60.04%2037.79l8.97-5.21%2016.76%2014.81-8.97%205.21-16.76-14.81z%22%20fill%3D%22%23fff%22%3E%3C%2Fpath%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M61.2%2022.86l16.77%204.51-.314.193.314-.183%2016.75%2014.81-8.97%205.21-16.58-14.66-9.13%205.05v-.01l-.792.472.812-.472%2016.75%2014.81-8.97%205.22-16.69-14.767-9.01%205.147-16.77-4.52%208.97-5.21%208.95-5.2h.01l8.95-5.2%208.95-5.2zm-2.32%2040.15L42.14%2048.19l-16.77-4.52-.09%2033.34%2033.5%2019.35.1-33.35z%22%20fill%3D%22%23003781%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M94.72%2042.22v1c0%205.69-4%2012.62-8.93%2015.48-4.93%202.86-9%20.56-9-5.14v-1l17.93-10.34z%22%20fill%3D%22%23fff%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M76.8%2052.56v1c0%205.7-4%2012.63-8.93%2015.48-4.93%202.85-9%20.56-9-5.14v-1L76.8%2052.56z%22%20fill%3D%22%23fff%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E" alt="" className='w-10' />
               <div>
@@ -76,8 +64,8 @@ const Header = () => {
             
             </p>
 
-            <p className=' relative flex items-center gap-1 hover:text-black cursor-pointer' onClick={dropDeveloper}>Developer <CgChevronDown />
-            {dropDeveloperMenu && (
+            <p className=' relative flex items-center gap-1 hover:text-black cursor-pointer' onClick={()=>dropdown("Developer")}>Developer <CgChevronDown />
+            {activedropdown === "Developer" && (
               <div className=' absolute w-[700px] h-60 top-15 bg-white rounded-[6px] shadow-lg flex justify-around items-center'>
                 <div className='w-84 h-60 flex flex-col justify-around'>
                   <div className='flex items-center gap-3 p-2 rounded-md cursor-pointer'>
@@ -104,8 +92,8 @@ const Header = () => {
             
             </p>
                               
-            <p className='flex items-center gap-1 hover:text-black cursor-pointer' onClick={dropLearn}>Learn <CgChevronDown />
-            {dropLearnMenu && (
+            <p className='flex items-center gap-1 hover:text-black cursor-pointer' onClick={()=>dropdown("Learn")}>Learn <CgChevronDown />
+            {activedropdown === "Learn" && (
               <div className=' absolute w-[480px] h-60 top-22 bg-white rounded-[6px] shadow-lg flex justify-around items-center'>
                 <div className='w-100 h-60 flex flex-col justify-around'>
                   <div className='flex items-center gap-3 p-2 rounded-md cursor-pointer'>
